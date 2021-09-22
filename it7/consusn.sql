@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-09-2021 a las 21:48:11
+-- Tiempo de generación: 08-09-2021 a las 19:39:27
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -84,9 +84,6 @@ CREATE TABLE `caractproy` (
   `md50` tinyint(1) DEFAULT NULL,
   `mdotro` tinyint(1) DEFAULT NULL,
   `mdotrotxt` varchar(15) DEFAULT NULL,
-  `formMDSimg` int(1) DEFAULT NULL,
-  `formMDStiff` int(1) DEFAULT NULL,
-  `formMDStxt` int(1) DEFAULT NULL,
   `ampx30` tinyint(1) DEFAULT NULL,
   `ampx20` tinyint(1) DEFAULT NULL,
   `ampx15` tinyint(1) DEFAULT NULL,
@@ -95,9 +92,6 @@ CREATE TABLE `caractproy` (
   `ampx06` tinyint(1) DEFAULT NULL,
   `ampxotro` tinyint(1) DEFAULT NULL,
   `ampxotrotxt` varchar(15) DEFAULT NULL,
-  `formFoto_ecw` int(1) DEFAULT NULL,
-  `formFoto_TIFF` int(1) DEFAULT NULL,
-  `formFoto_original` int(1) DEFAULT NULL,
   `aclE` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -105,9 +99,8 @@ CREATE TABLE `caractproy` (
 -- Volcado de datos para la tabla `caractproy`
 --
 
-INSERT INTO `caractproy` (`id`, `detalle`, `grilla05`, `grilla1`, `grilla2`, `grilla5`, `grilla10`, `grilla50`, `grillaotro`, `grillaotrotexto`, `formato_IMG`, `formato_TIFF`, `formato_TXT`, `curvasnivel_125`, `curvasnivel_51`, `curvasnivel_102`, `curvasnivel_otro`, `curvasnivel_otroTXT`, `cn_FDWG`, `cn_FSHP`, `cn_FKMZ`, `fvDWG`, `fvshp`, `fvkmz`, `fidwg`, `fishp`, `fikmz`, `md05`, `md1`, `md2`, `md5`, `md10`, `md50`, `mdotro`, `mdotrotxt`, `formMDSimg`, `formMDStiff`, `formMDStxt`, `ampx30`, `ampx20`, `ampx15`, `ampx10`, `ampx08`, `ampx06`, `ampxotro`, `ampxotrotxt`, `formFoto_ecw`, `formFoto_TIFF`, `formFoto_original`, `aclE`) VALUES
-(1, 'Rio diamante                  ', 0, 0, 0, 0, 1, 0, 0, '', 0, 0, 0, 0, 0, 0, 1, '2*250          ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 'Este se va a replicar                                                                                                                                                                                                                                          '),
-(2, 'Jachal  PTL_A                 ', 0, 1, 0, 0, 0, 0, 0, '', 0, 0, 1, 1, 0, 0, 0, '', 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, '0.5            ', 0, 1, 1, '');
+INSERT INTO `caractproy` (`id`, `detalle`, `grilla05`, `grilla1`, `grilla2`, `grilla5`, `grilla10`, `grilla50`, `grillaotro`, `grillaotrotexto`, `formato_IMG`, `formato_TIFF`, `formato_TXT`, `curvasnivel_125`, `curvasnivel_51`, `curvasnivel_102`, `curvasnivel_otro`, `curvasnivel_otroTXT`, `cn_FDWG`, `cn_FSHP`, `cn_FKMZ`, `fvDWG`, `fvshp`, `fvkmz`, `fidwg`, `fishp`, `fikmz`, `md05`, `md1`, `md2`, `md5`, `md10`, `md50`, `mdotro`, `mdotrotxt`, `ampx30`, `ampx20`, `ampx15`, `ampx10`, `ampx08`, `ampx06`, `ampxotro`, `ampxotrotxt`, `aclE`) VALUES
+(1, 'Rio diamante                  ', 0, 0, 0, 0, 1, 0, 0, '', 0, 0, 0, 0, 0, 0, 1, '2*250          ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '', 'Este se va a replicar                                                                                                                                                                                                                                          ');
 
 -- --------------------------------------------------------
 
@@ -123,19 +116,19 @@ CREATE TABLE `cargahoras` (
   `bloques_Rea` int(5) DEFAULT NULL,
   `fecha` date NOT NULL,
   `horas` float NOT NULL,
-  `id_usuario` int(5) NOT NULL,
-  `cattarea` int(1) DEFAULT NULL
+  `id_usuario` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `cargahoras`
+-- Estructura de tabla para la tabla `nanproytarea`
 --
 
-INSERT INTO `cargahoras` (`id`, `id_proyecto`, `id_tramo`, `id_tarea`, `bloques_Rea`, `fecha`, `horas`, `id_usuario`, `cattarea`) VALUES
-(3, 3, 4, 7, 58, '2021-07-02', 1.5, 14, 2),
-(4, 3, 4, 2, 3, '2021-07-02', 6.5, 14, 0),
-(5, 3, 4, 2, 56, '2021-07-05', 8, 14, 0),
-(6, 3, 4, 1, 125, '2021-01-01', 5, 9, 1);
+CREATE TABLE `nanproytarea` (
+  `id_proyecto` int(10) NOT NULL,
+  `id_tarea` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -194,8 +187,7 @@ CREATE TABLE `planifdevuelo` (
 --
 
 INSERT INTO `planifdevuelo` (`id`, `nombre`, `area_HA`, `altura_Vuelo`, `velocidad`, `fov`, `ancho_barrido`, `num_pia`, `san_rate`, `densidad_m2`, `precision_H`, `precision_VPromedio`, `cantidad_lineas`, `longitud_km`, `tamanio_px`, `cantidad_imgs`, `solapamiento_longitudinal`, `solapamiento_transversal`, `horas`, `potencia`, `id_proyecto`) VALUES
-(1, 'Planif rioD                   ', 88000, 2500, 100, 36, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3),
-(2, 'Jachal                        ', 35000, 2500, 100, 36, 785, 2, 46, 4, 0.2, 0.15, 60, 3510, 0.15, 3500, 60, 25, 11, 100, 10);
+(1, 'Planif rioD                   ', 88000, 2500, 100, 36, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -285,10 +277,9 @@ CREATE TABLE `proyecto` (
   `nombre` varchar(20) NOT NULL,
   `id_caracteristicas` int(10) DEFAULT NULL,
   `ubicacion` varchar(50) DEFAULT NULL,
-  `provincia` varchar(30) DEFAULT NULL,
   `tamanoEnKm2` float DEFAULT NULL,
   `numbloques` int(5) DEFAULT NULL,
-  `dgncalcado` varchar(50) DEFAULT NULL,
+  `dgncalcado` varchar(15) DEFAULT NULL,
   `tamanoBloqueEnKm2` int(5) DEFAULT NULL,
   `id_sistema` int(10) DEFAULT NULL,
   `id_proyeccion` varchar(50) DEFAULT NULL,
@@ -297,19 +288,15 @@ CREATE TABLE `proyecto` (
   `fotoaerea` tinyint(1) DEFAULT NULL,
   `id_requisitos` int(10) DEFAULT NULL,
   `id_kmHa` int(2) DEFAULT NULL,
-  `faja_aclaraciones` varchar(254) DEFAULT NULL,
-  `capaMDT` int(1) DEFAULT NULL,
-  `capaVecto` int(1) DEFAULT NULL,
-  `capaQA` int(1) DEFAULT NULL
+  `faja_aclaraciones` varchar(254) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `proyecto`
 --
 
-INSERT INTO `proyecto` (`id`, `nombre`, `id_caracteristicas`, `ubicacion`, `provincia`, `tamanoEnKm2`, `numbloques`, `dgncalcado`, `tamanoBloqueEnKm2`, `id_sistema`, `id_proyeccion`, `lynx`, `als60`, `fotoaerea`, `id_requisitos`, `id_kmHa`, `faja_aclaraciones`, `capaMDT`, `capaVecto`, `capaQA`) VALUES
-(3, 'Rio Diamante        ', 0, 'San Rafael                                        ', ' Mendoza', 88000, 1100, 'riodiamante.dgn                                   ', 1, 0, 'gaussK Faja 3 - GK                                ', 0, 1, 0, 0, 1, '                                                                                                                                                                                                                                                              ', 1, 1, 1),
-(10, 'Jachal              ', 2, 'San Juan                                          ', '0', 5000, 760, '00_Calcado_Jachal_PTLA                            ', 1, 6, 'gaussK Faja 3 - GK ', 0, 1, 1, 2, 1, 'La proyección es únicamente para el proceso de edición de superficie                                                                                                                                                                                          ', 1, 1, 1);
+INSERT INTO `proyecto` (`id`, `nombre`, `id_caracteristicas`, `ubicacion`, `tamanoEnKm2`, `numbloques`, `dgncalcado`, `tamanoBloqueEnKm2`, `id_sistema`, `id_proyeccion`, `lynx`, `als60`, `fotoaerea`, `id_requisitos`, `id_kmHa`, `faja_aclaraciones`) VALUES
+(3, 'Rio Diamante        ', 0, 'San Rafael                                        ', 88000, 1100, 'riodiamante.dgn', 1, 0, 'gaussK Faja 3 - GK                                ', 0, 1, 0, 0, 1, '                                                                                                                                                                                                                                                              ');
 
 -- --------------------------------------------------------
 
@@ -383,13 +370,6 @@ CREATE TABLE `requisitos` (
   `Aclaraciones` varchar(254) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `requisitos`
---
-
-INSERT INTO `requisitos` (`id`, `nombre`, `ejeybordesinclasificar`, `agua`, `canal`, `cauceSeco`, `cementerio`, `dique`, `autodromo`, `ejeybordeclasificados`, `banquinapavimentada`, `bordedecamino`, `caminoPrincipal`, `caminossecundarios`, `carrildesaceleracion`, `accesos`, `huellasentranqueras`, `darsenas`, `cordones`, `manzanas`, `limitedecalzada`, `cotasenbordesyeje`, `lineaselectricas`, `postesdelineaselectricas`, `transformadores`, `postesdeiluminacion`, `galibos`, `alambrados`, `tranqueras`, `guardaganados`, `postedetranquera`, `cercodemadera`, `cercometalico`, `edificaciones`, `perfilestransversales`, `garitas`, `alcantarillassindatos`, `alcantarillascondatos`, `alcantarillastransversales`, `alcantarillaslaterales`, `barandasmetalicas`, `carteles`, `pretiles`, `mojonkilometrico`, `senializacionhorizontal`, `espaciosverdes`, `destinos`, `puentes`, `luminarias`, `viasferrocarril`, `estacionesferroviarias`, `semaforos`, `telefoniadeemergencia`, `lomosdeburro`, `gasoducto`, `umbrales`, `puntosfijos`, `arboles`, `aguarios`, `basculas`, `lineasAltaTension`, `subestacionElectrica`, `Aclaraciones`) VALUES
-(2, 'Jachal_PTL_A                  ', 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 'Badén                                                                                                                                                                ');
-
 -- --------------------------------------------------------
 
 --
@@ -418,7 +398,7 @@ INSERT INTO `sistema` (`id`, `nombre`, `descripcion`) VALUES
 
 CREATE TABLE `tarea` (
   `id` int(20) NOT NULL,
-  `nombre` varchar(50) NOT NULL
+  `nombre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -428,7 +408,9 @@ CREATE TABLE `tarea` (
 INSERT INTO `tarea` (`id`, `nombre`) VALUES
 (1, 'vectorizacion Microstation'),
 (2, 'edicion Nube Microstation'),
-(3, 'vectorizacion CAD'),
+(3, 'vectorizacion Microstation'),
+(4, 'edicion Nube Microstation'),
+(5, 'edicion CAD'),
 (6, 'correccion Vectorizacion'),
 (7, 'correccion Nube'),
 (8, 'grillas'),
@@ -444,7 +426,6 @@ INSERT INTO `tarea` (`id`, `nombre`) VALUES
 CREATE TABLE `tramo` (
   `id` int(5) NOT NULL,
   `nombre` varchar(30) NOT NULL,
-  `cantBloq` int(10) DEFAULT NULL,
   `id_proyecto` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -452,13 +433,13 @@ CREATE TABLE `tramo` (
 -- Volcado de datos para la tabla `tramo`
 --
 
-INSERT INTO `tramo` (`id`, `nombre`, `cantBloq`, `id_proyecto`) VALUES
-(1, 'vcp1                          ', 5, 0),
-(2, 'vcp2                          ', 4, 0),
-(3, 'vcp3                          ', 7, 0),
-(4, 'Centro                        ', 10, 3),
-(5, 'Este                          ', 13, 3),
-(7, 'PTL_A                         ', 2222, 10);
+INSERT INTO `tramo` (`id`, `nombre`, `id_proyecto`) VALUES
+(1, 'vcp1                          ', 0),
+(2, 'vcp2                          ', 0),
+(3, 'vcp3                          ', 0),
+(4, 'Centro                        ', 3),
+(5, 'Este                          ', 3),
+(6, 'Centro                        ', 3);
 
 -- --------------------------------------------------------
 
@@ -609,19 +590,19 @@ ALTER TABLE `campo`
 -- AUTO_INCREMENT de la tabla `caractproy`
 --
 ALTER TABLE `caractproy`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `cargahoras`
 --
 ALTER TABLE `cargahoras`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `planifdevuelo`
 --
 ALTER TABLE `planifdevuelo`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `proyeccion`
@@ -645,13 +626,13 @@ ALTER TABLE `proyeccioninicial`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `requisitos`
 --
 ALTER TABLE `requisitos`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `sistema`
@@ -669,13 +650,13 @@ ALTER TABLE `tarea`
 -- AUTO_INCREMENT de la tabla `tramo`
 --
 ALTER TABLE `tramo`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculo`
