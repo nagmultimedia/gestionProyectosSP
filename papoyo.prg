@@ -15,8 +15,6 @@ set status bar off
 set sysmenu off
 set talk off
 hide menu all
-*SET SKIP OF PAD _MSM_EDIT OF _MSYSMENU .T.
-*Application.Visible=.f.
 clear all
 clear
 clear events
