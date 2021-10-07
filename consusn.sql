@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-09-2021 a las 21:48:11
+-- Tiempo de generación: 07-10-2021 a las 21:33:24
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `consusn`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asignacion`
+--
+
+CREATE TABLE `asignacion` (
+  `id_usuario` int(10) NOT NULL,
+  `id_proyecto` int(10) NOT NULL,
+  `id_tramo` int(15) DEFAULT NULL,
+  `id_tarea` int(10) NOT NULL,
+  `bloques_asig` int(5) DEFAULT NULL,
+  `tiempoEstimado` int(5) DEFAULT NULL,
+  `cantModif` int(10) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `asignacion`
+--
+
+INSERT INTO `asignacion` (`id_usuario`, `id_proyecto`, `id_tramo`, `id_tarea`, `bloques_asig`, `tiempoEstimado`, `cantModif`) VALUES
+(10, 10, 7, 6, 45, 110, 0);
 
 -- --------------------------------------------------------
 
@@ -107,7 +130,8 @@ CREATE TABLE `caractproy` (
 
 INSERT INTO `caractproy` (`id`, `detalle`, `grilla05`, `grilla1`, `grilla2`, `grilla5`, `grilla10`, `grilla50`, `grillaotro`, `grillaotrotexto`, `formato_IMG`, `formato_TIFF`, `formato_TXT`, `curvasnivel_125`, `curvasnivel_51`, `curvasnivel_102`, `curvasnivel_otro`, `curvasnivel_otroTXT`, `cn_FDWG`, `cn_FSHP`, `cn_FKMZ`, `fvDWG`, `fvshp`, `fvkmz`, `fidwg`, `fishp`, `fikmz`, `md05`, `md1`, `md2`, `md5`, `md10`, `md50`, `mdotro`, `mdotrotxt`, `formMDSimg`, `formMDStiff`, `formMDStxt`, `ampx30`, `ampx20`, `ampx15`, `ampx10`, `ampx08`, `ampx06`, `ampxotro`, `ampxotrotxt`, `formFoto_ecw`, `formFoto_TIFF`, `formFoto_original`, `aclE`) VALUES
 (1, 'Rio diamante                  ', 0, 0, 0, 0, 1, 0, 0, '', 0, 0, 0, 0, 0, 0, 1, '2*250          ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 'Este se va a replicar                                                                                                                                                                                                                                          '),
-(2, 'Jachal  PTL_A                 ', 0, 1, 0, 0, 0, 0, 0, '', 0, 0, 1, 1, 0, 0, 0, '', 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, '0.5            ', 0, 1, 1, '');
+(2, 'Jachal  PTL_A                 ', 0, 1, 0, 0, 0, 0, 0, '', 0, 0, 1, 1, 0, 0, 0, '', 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, '0.5            ', 0, 1, 1, ''),
+(3, 'ProyectoDePrueba E1           ', 0, 0, 0, 0, 1, 0, 1, '', 1, 1, 0, 0, 0, 0, 1, '2*250          ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, '', 0, 0, 0, 'Este se va a replicar                                                                                                                                                                                                                                          ');
 
 -- --------------------------------------------------------
 
@@ -118,13 +142,13 @@ INSERT INTO `caractproy` (`id`, `detalle`, `grilla05`, `grilla1`, `grilla2`, `gr
 CREATE TABLE `cargahoras` (
   `id` int(20) NOT NULL,
   `id_proyecto` int(10) NOT NULL,
-  `id_tramo` int(10) DEFAULT NULL,
-  `id_tarea` int(10) NOT NULL,
+  `id_tramo` int(15) DEFAULT NULL,
+  `id_tarea` int(10) DEFAULT '999',
   `bloques_Rea` int(5) DEFAULT NULL,
   `fecha` date NOT NULL,
   `horas` float NOT NULL,
   `id_usuario` int(5) NOT NULL,
-  `cattarea` int(1) DEFAULT NULL
+  `cattarea` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -135,7 +159,18 @@ INSERT INTO `cargahoras` (`id`, `id_proyecto`, `id_tramo`, `id_tarea`, `bloques_
 (3, 3, 4, 7, 58, '2021-07-02', 1.5, 14, 2),
 (4, 3, 4, 2, 3, '2021-07-02', 6.5, 14, 0),
 (5, 3, 4, 2, 56, '2021-07-05', 8, 14, 0),
-(6, 3, 4, 1, 125, '2021-01-01', 5, 9, 1);
+(6, 3, 4, 1, 125, '2021-01-01', 5, 9, 1),
+(7, 3, 5, 6, 12, '2021-09-02', 33, 1, 2),
+(9, 3, 4, 1, 30, '2021-09-02', 16, 1, 1),
+(10, 3, 4, 1, 30, '2021-09-02', 16, 1, 1),
+(11, 3, 5, 1, 25, '2021-01-01', 8, 9, 1),
+(12, 3, 5, 1, 0, '2021-01-01', 8, 9, 1),
+(13, 10, 7, 1, 1, '2021-02-01', 2, 14, 1),
+(15, 3, 5, 1, 0, '2021-01-01', 1, 9, 0),
+(16, 10, 7, 1, 0, '2021-01-01', 1, 9, 5),
+(17, 10, 7, 1, 0, '2021-01-01', 1, 9, 5),
+(18, 3, 0, 9, 0, '2021-01-01', 3, 9, 5),
+(19, 10, 7, 8, 0, '2021-01-01', 6, 9, 5);
 
 -- --------------------------------------------------------
 
@@ -195,7 +230,8 @@ CREATE TABLE `planifdevuelo` (
 
 INSERT INTO `planifdevuelo` (`id`, `nombre`, `area_HA`, `altura_Vuelo`, `velocidad`, `fov`, `ancho_barrido`, `num_pia`, `san_rate`, `densidad_m2`, `precision_H`, `precision_VPromedio`, `cantidad_lineas`, `longitud_km`, `tamanio_px`, `cantidad_imgs`, `solapamiento_longitudinal`, `solapamiento_transversal`, `horas`, `potencia`, `id_proyecto`) VALUES
 (1, 'Planif rioD                   ', 88000, 2500, 100, 36, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3),
-(2, 'Jachal                        ', 35000, 2500, 100, 36, 785, 2, 46, 4, 0.2, 0.15, 60, 3510, 0.15, 3500, 60, 25, 11, 100, 10);
+(2, 'Jachal                        ', 35000, 2500, 100, 36, 785, 2, 46, 4, 0.2, 0.15, 60, 3510, 0.15, 3500, 60, 25, 11, 100, 10),
+(3, 'ProyectoDePrueba demo01       ', 45, 45, 45, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12);
 
 -- --------------------------------------------------------
 
@@ -295,6 +331,7 @@ CREATE TABLE `proyecto` (
   `lynx` tinyint(1) DEFAULT NULL,
   `als60` tinyint(1) DEFAULT NULL,
   `fotoaerea` tinyint(1) DEFAULT NULL,
+  `als80` int(1) DEFAULT NULL,
   `id_requisitos` int(10) DEFAULT NULL,
   `id_kmHa` int(2) DEFAULT NULL,
   `faja_aclaraciones` varchar(254) DEFAULT NULL,
@@ -307,9 +344,10 @@ CREATE TABLE `proyecto` (
 -- Volcado de datos para la tabla `proyecto`
 --
 
-INSERT INTO `proyecto` (`id`, `nombre`, `id_caracteristicas`, `ubicacion`, `provincia`, `tamanoEnKm2`, `numbloques`, `dgncalcado`, `tamanoBloqueEnKm2`, `id_sistema`, `id_proyeccion`, `lynx`, `als60`, `fotoaerea`, `id_requisitos`, `id_kmHa`, `faja_aclaraciones`, `capaMDT`, `capaVecto`, `capaQA`) VALUES
-(3, 'Rio Diamante        ', 0, 'San Rafael                                        ', ' Mendoza', 88000, 1100, 'riodiamante.dgn                                   ', 1, 0, 'gaussK Faja 3 - GK                                ', 0, 1, 0, 0, 1, '                                                                                                                                                                                                                                                              ', 1, 1, 1),
-(10, 'Jachal              ', 2, 'San Juan                                          ', '0', 5000, 760, '00_Calcado_Jachal_PTLA                            ', 1, 6, 'gaussK Faja 3 - GK ', 0, 1, 1, 2, 1, 'La proyección es únicamente para el proceso de edición de superficie                                                                                                                                                                                          ', 1, 1, 1);
+INSERT INTO `proyecto` (`id`, `nombre`, `id_caracteristicas`, `ubicacion`, `provincia`, `tamanoEnKm2`, `numbloques`, `dgncalcado`, `tamanoBloqueEnKm2`, `id_sistema`, `id_proyeccion`, `lynx`, `als60`, `fotoaerea`, `als80`, `id_requisitos`, `id_kmHa`, `faja_aclaraciones`, `capaMDT`, `capaVecto`, `capaQA`) VALUES
+(3, 'Rio Diamante        ', 0, 'San Rafael                                        ', ' Mendoza                      ', 88000, 1100, 'riodiamante.dgn                                   ', 1, 0, 'gaussK Faja 3 - GK                                ', 0, 1, 0, 0, 2, 1, '                                                                                                                                                                                                                                                              ', 1, 1, 1),
+(10, 'Jachal              ', 2, 'San Juan                                          ', '0', 5000, 760, '00_Calcado_Jachal_PTLA                            ', 1, 6, 'gaussK Faja 3 - GK ', 0, 1, 1, 0, 2, 1, 'La proyección es únicamente para el proceso de edición de superficie                                                                                                                                                                                          ', 1, 1, 1),
+(12, 'ProyectoDePrueba    ', 0, 'Resistencia                                       ', ' Chaco                        ', 5000, 50, 'proyectoppp-ddd.dgn                               ', 1, 0, 'gaussK Faja 3 - GK                                ', 0, 1, 0, 1, 0, 1, 'la faja es tres pero va a ser verificada por el cliente en dos meses.                                                                                                                                                                                         ', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -388,7 +426,8 @@ CREATE TABLE `requisitos` (
 --
 
 INSERT INTO `requisitos` (`id`, `nombre`, `ejeybordesinclasificar`, `agua`, `canal`, `cauceSeco`, `cementerio`, `dique`, `autodromo`, `ejeybordeclasificados`, `banquinapavimentada`, `bordedecamino`, `caminoPrincipal`, `caminossecundarios`, `carrildesaceleracion`, `accesos`, `huellasentranqueras`, `darsenas`, `cordones`, `manzanas`, `limitedecalzada`, `cotasenbordesyeje`, `lineaselectricas`, `postesdelineaselectricas`, `transformadores`, `postesdeiluminacion`, `galibos`, `alambrados`, `tranqueras`, `guardaganados`, `postedetranquera`, `cercodemadera`, `cercometalico`, `edificaciones`, `perfilestransversales`, `garitas`, `alcantarillassindatos`, `alcantarillascondatos`, `alcantarillastransversales`, `alcantarillaslaterales`, `barandasmetalicas`, `carteles`, `pretiles`, `mojonkilometrico`, `senializacionhorizontal`, `espaciosverdes`, `destinos`, `puentes`, `luminarias`, `viasferrocarril`, `estacionesferroviarias`, `semaforos`, `telefoniadeemergencia`, `lomosdeburro`, `gasoducto`, `umbrales`, `puntosfijos`, `arboles`, `aguarios`, `basculas`, `lineasAltaTension`, `subestacionElectrica`, `Aclaraciones`) VALUES
-(2, 'Jachal_PTL_A                  ', 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 'Badén                                                                                                                                                                ');
+(2, 'Jachal_PTL_A                  ', 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 'Badén                                                                                                                                                                '),
+(3, 'ProyectoDePrueba              ', 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 'Badén                                                                                                                                                                                                                                                         ');
 
 -- --------------------------------------------------------
 
@@ -426,14 +465,14 @@ CREATE TABLE `tarea` (
 --
 
 INSERT INTO `tarea` (`id`, `nombre`) VALUES
-(1, 'vectorizacion Microstation'),
-(2, 'edicion Nube Microstation'),
-(3, 'vectorizacion CAD'),
-(6, 'correccion Vectorizacion'),
-(7, 'correccion Nube'),
-(8, 'grillas'),
-(9, 'licencia medica'),
-(10, 'meet / reunion');
+(1, 'Vectorizacion Microstation'),
+(2, 'Edicion Nube Microstation'),
+(3, 'Vectorizacion CAD'),
+(6, 'Correccion Vectorizacion'),
+(7, 'Correccion Nube'),
+(8, 'Grillas'),
+(9, 'Licencia medica'),
+(10, 'Meet / reunion');
 
 -- --------------------------------------------------------
 
@@ -442,7 +481,7 @@ INSERT INTO `tarea` (`id`, `nombre`) VALUES
 --
 
 CREATE TABLE `tramo` (
-  `id` int(5) NOT NULL,
+  `id` int(15) NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `cantBloq` int(10) DEFAULT NULL,
   `id_proyecto` int(10) NOT NULL
@@ -453,12 +492,13 @@ CREATE TABLE `tramo` (
 --
 
 INSERT INTO `tramo` (`id`, `nombre`, `cantBloq`, `id_proyecto`) VALUES
-(1, 'vcp1                          ', 5, 0),
-(2, 'vcp2                          ', 4, 0),
-(3, 'vcp3                          ', 7, 0),
-(4, 'Centro                        ', 10, 3),
-(5, 'Este                          ', 13, 3),
-(7, 'PTL_A                         ', 2222, 10);
+(1, 'vcp1                          ', 500, 0),
+(2, 'vcp2                          ', 400, 0),
+(3, 'vcp3                          ', 700, 0),
+(4, 'Centro                        ', 1000, 3),
+(5, 'Este                          ', 1300, 3),
+(7, 'PTL_A                         ', 2222, 10),
+(9, 'Tramo1                        ', 50, 12);
 
 -- --------------------------------------------------------
 
@@ -485,8 +525,8 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `nomUsuario`, `contrasena`, 
 (3, 'Pablo', 'Quintanilla', 'pablo_quintanilla', '123456', 2, 'pquintanilla@consularsa.com.ar'),
 (9, 'Gabriel', 'Gatti', 'gabriel_gatti', '123456    ', 1, 'ggarciagatti@consularsa.com.ar'),
 (10, 'Leandro        ', 'Pinto                         ', 'lpinto                        ', '123456    ', 1, 'lpinto@consularsa.com.ar                          '),
-(14, 'natacha        ', 'martinez                      ', 'nmartinez                     ', '123456    ', 0, 'nmartinez@consularsa.com.ar                       '),
-(15, 'sebastian      ', 'casado                        ', 'sebastian_casado              ', '123456    ', 2, 'scasado@consularsa.com.ar             ');
+(14, 'Natacha        ', 'Martinez                      ', 'nmartinez                     ', '123456    ', 0, 'nmartinez@consularsa.com.ar                       '),
+(15, 'Sebastian      ', 'Casado                        ', 'sebastian_casado              ', '123456    ', 2, 'scasado@consularsa.com.ar             ');
 
 -- --------------------------------------------------------
 
@@ -504,6 +544,12 @@ CREATE TABLE `vehiculo` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `asignacion`
+--
+ALTER TABLE `asignacion`
+  ADD PRIMARY KEY (`id_proyecto`,`id_usuario`,`id_tarea`);
 
 --
 -- Indices de la tabla `campo`
@@ -609,19 +655,19 @@ ALTER TABLE `campo`
 -- AUTO_INCREMENT de la tabla `caractproy`
 --
 ALTER TABLE `caractproy`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `cargahoras`
 --
 ALTER TABLE `cargahoras`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `planifdevuelo`
 --
 ALTER TABLE `planifdevuelo`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `proyeccion`
@@ -645,13 +691,13 @@ ALTER TABLE `proyeccioninicial`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `requisitos`
 --
 ALTER TABLE `requisitos`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `sistema`
@@ -669,7 +715,7 @@ ALTER TABLE `tarea`
 -- AUTO_INCREMENT de la tabla `tramo`
 --
 ALTER TABLE `tramo`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
