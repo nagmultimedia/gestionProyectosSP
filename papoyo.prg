@@ -24,7 +24,7 @@ _screen.visible=.f.
 _screen.lockscreen=.f.
 Application.visible=.f.
 
-Do form "F:\CARPETAS PERSONALES\Natacha\01-SP\SP\iniciooff.scx"
+Do form "F:\000-I+D\01-SP\SP\iniciooff.scx"
 
 Application.visible=.t.
 _screen.visible=.t.
