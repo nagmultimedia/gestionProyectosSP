@@ -1,0 +1,32 @@
+*******************************************
+PROCEDURE SendViaShell(tcReturn, tcTo, tcSubject, tcBody, tcCC, tcBCC)
+*******************************************
+DECLARE INTEGER ShellExecute IN shell32.DLL ;
+  INTEGER hwndWin, STRING cOperation, STRING cFile, ;
+  STRING cParameters, STRING cDirectory, INTEGER nShowWin
+  LOCAL lcCommand, lcCRLF
+TRY
+  lcCRLF = "%0D%0A"
+  lcCommand = "mailto:" + tcTo + "?Subject=" + tcSubject + "&Body=" + STRTRAN(tcBody, CHR(13), lcCRLF)
+  IF TYPE("tcCC") = "C"
+    lcCommand = lcCommand + "&CC=" + tcCC
+  ENDIF
+  IF TYPE("tcBCC") = "C"
+    lcCommand = lcCommand + "&BCC=" + tcBCC
+  ENDIF
+  IF LEN(lcCommand) > 2020 && debía ser 2048, pero no en mi sistema
+    THROW "El comando Mailto está limitado a 2048 bytes"
+  ENDIF
+  ShellExecute(0, "open", lcCommand, "", "", 1)
+CATCH TO loError
+  tcReturn = [Error: ] + STR(loError.ERRORNO) + CHR(13) + ;
+    [LineNo: ] + STR(loError.LINENO) + CHR(13) + ;
+    [Message: ] + loError.MESSAGE + CHR(13) + ;
+    [Procedure: ] + loError.PROCEDURE + CHR(13) + ;
+    [Details: ] + loError.DETAILS + CHR(13) + ;
+    [StackLevel: ] + STR(loError.STACKLEVEL) + CHR(13) + ;
+    [LineContents: ] + loError.LINECONTENTS
+FINALLY
+  CLEAR DLLS "ShellExecute"
+ENDTRY
+Endproc
